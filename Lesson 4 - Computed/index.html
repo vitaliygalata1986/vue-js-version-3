@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Методы</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sample">
+        <input type="text" :value="name" @input="onInput">
+        <br>
+        <br>
+        firstName: <input type="text" v-model.trim="firstName"><br>
+        lastName : <input type="text" v-model.trim="lastName"><br>
+        <hr>
+        <h2>Hello, {{ name }}</h2>
+        <h3>Hi {{fullName}}</h3> <!--но при таком потходе будет каждый раз рендерится страница-->
+        <hr>
+        <button @click="showAlert = !showAlert" class="btn btn-success" type="button">Toggle alert</button>
+        <div class="alert alert-danger mt-3" v-show="showAlert">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, nobis!
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let app = Vue.createApp({
+        data: function () {
+            return {
+                showAlert: false,
+                name: '',
+                firstName:'',
+                lastName:'',
+            }
+        },
+        methods:{
+            onInput(e){
+                this.name = e.target.value
+            },
+        },
+        computed:{
+            fullName(){
+                console.log('here')
+                return (this.firstName + ' ' + this.lastName).trim()
+            }
+        }
+    });
+    let root = app.mount('.sample');
+</script>
+</body>
+</html>
