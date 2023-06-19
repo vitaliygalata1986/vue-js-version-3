@@ -24,6 +24,9 @@
         <div class="alert alert-danger mt-3" v-show="showAlert">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, nobis!
         </div>
+        <hr>
+        {{toUpper(firstName)}}
+        {{toUpper(lastName)}}
     </div>
 </div>
 
@@ -45,6 +48,10 @@
             fullName(){
                 console.log('here')
                 return (this.firstName + ' ' + this.lastName).trim()
+            },
+            toUpper(str){
+                console.log('here_1')
+                return str.toUpperCase().split('').reverse().join('')
             }
         }
     });
