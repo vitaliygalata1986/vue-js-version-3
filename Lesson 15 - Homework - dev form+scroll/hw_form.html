@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sample">
+        <form v-if="!formDone" @submit.prevent="sendForm">
+            <div class="progress">
+                <div class="progress-bar" :style="progressStyles"></div>
+            </div>
+            <div>
+                <app-form-element
+                        v-for="(field,i) in info"
+                        :key="i"
+                        :label="field.label"
+                        :value="field.value"
+                        :valid="field.valid"
+                        @updatedvalue="onInput(i, $event)"
+                ></app-form-element>
+            </div>
+            <button :disabled="!formReady" class="btn btn-primary">
+                Send Data
+            </button>
+        </form>
+        <div v-else>
+            <table class="table table-bordered">
+                <tr v-for="field in info">
+                    <td>{{field.label}}</td>
+                    <td>{{field.value}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+
+    let AppFormElement = {
+        props: {
+            label: {
+                type: String,
+                required: true
+            },
+            value: {
+                type: String,
+                required: true
+            },
+            valid: {
+                type: Boolean,
+                required: true
+            },
+        },
+        data() {
+            return {
+                activated: this.value !== ''
+            }
+        },
+        methods: {
+            onInput(event) {
+                this.activated = true;
+                const value = event.target.value
+                this.$emit('updatedvalue', value)
+            }
+        },
+        computed: {
+            iconsClasses() {
+                return {
+                    'fa fa-check-circle text-success': this.valid,
+                    'fa fa-exclamation-circle text-danger': !this.valid
+                }
+            },
+        },
+        template: `
+          <div class="form-group">
+          <label>
+            {{ label }}
+            {{ this.activated }}
+            <span v-if="activated" :class="iconsClasses">
+            </span>
+          </label>
+          <input type="text" class="form-control" :value="value" @input="onInput">
+          </div>
+        `
+    }
+
+    Vue.createApp({
+        components: {
+            AppFormElement
+        },
+        data: () => ({
+            formDone: false,
+            info: [
+                {
+                    label: 'Name',
+                    value: '',
+                    pattern: /^[a-zA-Z ]{2,30}$/
+                },
+                {
+                    label: 'Phone',
+                    value: '',
+                    pattern: /^[0-9]{7,14}$/
+                },
+                {
+                    label: 'Email',
+                    value: '',
+                    pattern: /.+/
+                },
+                {
+                    label: 'Some Field 1',
+                    value: '',
+                    pattern: /.+/
+                },
+                {
+                    label: 'Some Field 2',
+                    value: '',
+                    pattern: /.+/
+                }
+            ]
+        }),
+        methods: {
+            onInput(i, val) {
+                let field = this.info[i];
+                field.value = val.trim();
+                field.valid = field.pattern.test(field.value);
+            },
+            sendForm() {
+                if (this.formReady) {// проверка нужна для того, чтобы если кто-то удалит через инспектор у кнопки disabled
+                    this.formDone = true
+                }
+            },
+        },
+        created() {
+            this.info.forEach(field => {
+                field.valid = false;
+            })
+        },
+        computed: {
+            fieldDone() {
+                return this.info.filter(field => field.valid).length
+            },
+            formReady() {
+                // return this.info.every(val => val.valid)
+                return this.fieldDone >= this.info.length
+            },
+            progressStyles() {
+                const rel = this.fieldDone / this.info.length * 100
+                return {width: rel + '%'}
+            },
+        }
+    }).mount('.sample');
+</script>
+</body>
+</html>
