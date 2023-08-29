@@ -3,7 +3,15 @@
     <label class="form-label">
       {{ label }}
 <!--      <font-icon :class="iconsClasses" v-if="activated" :icon="nameIcon" />-->
-      <transition name="fade">
+      <transition
+          name="icon"
+          v-if="activated"
+          mode="out-in"
+          appear
+          appear-active-class="icon-appear"
+      >
+        <!-- mode="out-in" - анимация сработает на переключение иконок-->
+        <!-- appear" - первая иконка -->
         <!--
         <font-icon
             v-if="valid"
@@ -16,8 +24,9 @@
             :icon="valid ? 'check-circle' : 'exclamation-circle' "
         />
         -->
+
+
         <font-icon
-          v-if="activated"
           :key="valid"
           :class="iconsClasses"
           :icon="valid ? 'check-circle' : 'exclamation-circle' "
@@ -81,22 +90,31 @@ export default {
   margin-bottom: 5px;
 }
 
-.fade-enter-active{
-  animation: fadeIn 0.5s;
+.icon-enter-active{
+  animation: iconIn 0.5s;
 }
 
-.fade-leave-active{
-  animation: fadeOut 0.5s;
+.icon-leave-active{
+  animation: iconIn 0.5s;
 }
 
-@keyframes fadeIn {
-  from{opacity: 0; transform: translateX(-100px)}
-  to{opacity: 1; transform: translateX(0)}
+.icon-appear{
+  animation: iconAppear 0.5s;
 }
 
-@keyframes fadeOut {
-  from{opacity: 1}
-  to{opacity: 0}
+@keyframes iconIn {
+  from{transform: rotateY(-90deg)}
+  to{transform: rotateY(0)}
+}
+
+@keyframes iconOut {
+  from{transform: rotateY(0)}
+  to{transform: rotateY(90deg)}
+}
+
+@keyframes iconAppear {
+  from{opacity:0}
+  to{opacity: 1}
 }
 
 </style>
