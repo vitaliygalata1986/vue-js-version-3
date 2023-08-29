@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group" :class="appGroup">
+  <div class="form-group appGroup">
     <label class="form-label">
       {{ label }}
 <!--      <font-icon :class="iconsClasses" v-if="activated" :icon="nameIcon" />-->

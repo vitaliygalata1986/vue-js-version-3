@@ -1,41 +1,56 @@
 <template>
   <div class="container mt-2">
-  <form v-if="!formDone" @submit.prevent="sendForm">
-    <app-progress :current="fieldDone" :max="info.length" />
-    <div>
-      <app-field
-          v-for="(field,i) in info"
-          :key="i"
-          :label="field.label"
-          :value="field.value"
-          :valid="field.valid"
-          @updatedvalue="onInput(i, $event)"
-      ></app-field>
-    </div>
-    <button :disabled="!formReady" class="btn btn-primary mt-4">
-      Send Data
-    </button>
-  </form>
+    <form v-if="!formDone" @submit.prevent="sendForm">
+      <app-progress :current="fieldDone" :max="info.length"/>
+      <div>
+        <app-field
+            v-for="(field,i) in info"
+            :key="i"
+            :label="field.label"
+            :value="field.value"
+            :valid="field.valid"
+            @updatedvalue="onInput(i, $event)"
+        ></app-field>
+      </div>
+      <button :disabled="!formReady" class="btn btn-primary mt-4">
+        Send Data
+      </button>
+    </form>
 
-  <div v-else>
-<!--    <modal-info />-->
-    <info-table :info="this.info"/>
+    <h2 v-else>All done</h2>
+    <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+      <table class="table table-bordered">
+        <tbody>
+        <tr
+            v-for="(field,i) in info"
+            :key="i"
+        >
+          <th>{{ field.label }}</th>
+          <td>{{ field.value }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <hr>
+      <div class="d-flex">
+        <button class="btn btn-success me-1" @click="onConfirm">Ok</button>
+        <button class="btn btn-danger" @click="showModal = false">Cancel</button>
+      </div>
+    </vue-final-modal>
   </div>
 
-  </div>
 </template>
 
 <script>
 import AppField from "@/components/Field";
 import AppProgress from "@/components/ProgressBar";
-import InfoTable from "@/components/Table";
-// import ModalInfo from "@/components/VueFinalModal";
+import {VueFinalModal} from 'vue-final-modal'
 
 export default {
   name: 'App',
-  components: { AppField, AppProgress, InfoTable },
+  components: {AppField, AppProgress, VueFinalModal},
   data: () => ({
     formDone: false,
+    showModal: false,
     info: [
       {
         label: 'Name',
@@ -72,9 +87,13 @@ export default {
     },
     sendForm() {
       if (this.formReady) {
-        this.formDone = true
+        this.showModal = true
       }
     },
+    onConfirm(){
+      this.showModal = false
+      this.formDone = true
+    }
   },
   created() {
     this.info.forEach(field => {
@@ -92,3 +111,23 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+::v-deep .modal-container { /* стили будут применены в том числе и для его дочерних компонентов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::v-deep .modal-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  background: #fff;
+  width: 25%;
+}
+</style>
