@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed596d23-e571-40ec-8d35-43fa2a3fd590" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/.idea/Lesson 21 - Animations.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/2-transition.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/css/animate.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/css/font-awesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/css/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lesson 21 - Animations/js/vue.js" beforeDir="false" />
-    </list>
+    <list default="true" id="ed596d23-e571-40ec-8d35-43fa2a3fd590" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +24,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Vue/Lavrik/Lesson 25 - Practice animation",
+    "last_opened_file_path": "D:/Vue/Lavrik/Lesson 19 - Modified Form+Component+Finish",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -57,6 +40,7 @@
       <workItem from="1691089796889" duration="1639000" />
       <workItem from="1691169787153" duration="1710000" />
       <workItem from="1691171559647" duration="2849000" />
+      <workItem from="1693245040261" duration="566000" />
     </task>
     <servers />
   </component>

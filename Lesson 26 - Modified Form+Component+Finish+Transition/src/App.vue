@@ -18,9 +18,9 @@
   </form>
 
   <div v-else>
+<!--    <modal-info />-->
     <info-table :info="this.info"/>
   </div>
-
 
   </div>
 </template>
@@ -29,6 +29,7 @@
 import AppField from "@/components/Field";
 import AppProgress from "@/components/ProgressBar";
 import InfoTable from "@/components/Table";
+// import ModalInfo from "@/components/VueFinalModal";
 
 export default {
   name: 'App',

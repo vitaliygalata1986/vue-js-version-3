@@ -17,10 +17,9 @@
 export default {
   name: "InfoTable",
   props:{
-    info: {
-      type: Array,
-      required: true
-    },
+    info:{
+      info: { type: Array, required: true },
+    }
   }
 }
 </script>
