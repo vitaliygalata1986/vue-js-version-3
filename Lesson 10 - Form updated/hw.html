@@ -14,29 +14,55 @@
         <form v-if="!formDone" @submit.prevent="sendForm">
           <div class="form-group">
             <label>Email</label>
-            <input v-model.trim="user.email"  type="email" class="form-control" ref="firstInp"/>
+            <input
+              v-model.trim="user.email"
+              type="email"
+              class="form-control"
+              ref="firstInp"
+            />
           </div>
           <div class="form-group">
             <label>Phone</label>
-            <input v-model.trim="user.phone" type="phone" class="form-control" />
+            <input
+              v-model.trim="user.phone"
+              type="phone"
+              class="form-control"
+            />
           </div>
           <div class="form-group">
             <label>First Name</label>
-            <input v-model.trim="user.firstName" type="text" class="form-control" />
+            <input
+              v-model.trim="user.firstName"
+              type="text"
+              class="form-control"
+            />
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input v-model.trim="user.lastName" type="text" class="form-control" />
+            <input
+              v-model.trim="user.lastName"
+              type="text"
+              class="form-control"
+            />
           </div>
           <div class="form-group">
             <label>Guests </label>
-            <input @click="addGuest" type="button" class="btn btn-primary ml-2" value="+" />
+            <input
+              @click="addGuest"
+              type="button"
+              class="btn btn-primary ml-2"
+              value="+"
+            />
           </div>
 
           <div>
             <div class="form-group" v-for=",i in guests">
               <label @dblclick="removeGuest(i)">Guest {{ i + 1}} </label>
-              <input v-model.trim="guests[i]" type="text" class="form-control"/>
+              <input
+                v-model.trim="guests[i]"
+                type="text"
+                class="form-control"
+              />
             </div>
           </div>
 
@@ -44,7 +70,6 @@
           <button :disabled="!formReady" class="btn btn-success">
             Send Data
           </button>
-
         </form>
 
         <div v-else>
@@ -66,44 +91,46 @@
               <td>Guests</td>
               <td>
                 <ul class="list-group">
-                  <li class="list-group-item" v-for="guest in guests">{{guest}}</li>
+                  <li class="list-group-item" v-for="guest in guests">
+                    {{guest}}
+                  </li>
                 </ul>
               </td>
             </tr>
           </table>
         </div>
-
       </div>
     </div>
     <script>
       Vue.createApp({
         data: () => ({
-          user:{
+          user: {
             email: '',
             phone: '',
             firstName: '',
             lastName: '',
           },
-          guests:[],
-          formDone: false
+          guests: [],
+          formDone: false,
         }),
         methods: {
           sendForm() {
-            if(this.formReady){// проверка нужна для того, чтобы если кто-то удалит через инспектор у кнопки disabled
-              this.formDone=true
-              this.guests = this.guests.filter(g=>g.length>0)
+            if (this.formReady) {
+              // проверка нужна для того, чтобы если кто-то удалит через инспектор у кнопки disabled
+              this.formDone = true;
+              this.guests = this.guests.filter((g) => g.length > 0);
             }
           },
-          addGuest(){
-            this.guests.push('')
+          addGuest() {
+            this.guests.push('');
           },
-          removeGuest(i){
-            this.guests.splice(i,1)
-          }
+          removeGuest(i) {
+            this.guests.splice(i, 1);
+          },
         },
         computed: {
-          fullName(){
-            return (this.user.firstName + ' ' + this.user.lastName).trim()
+          fullName() {
+            return (this.user.firstName + ' ' + this.user.lastName).trim();
           },
           formReady() {
             // если return false - то кнопка разблокируется
@@ -113,12 +140,13 @@
             //   this.first_name &&
             //   this.last_name
             // );
-            return Object.values(this.user).every(val => val.length > 0)
+            return Object.values(this.user).every((val) => val.length > 0);
           },
         },
-        mounted(){ // при загрузки страницы инпут будет фокусироваться
-          this.$refs.firstInp.focus()
-        }
+        mounted() {
+          // при загрузки страницы инпут будет фокусироваться
+          this.$refs.firstInp.focus();
+        },
       }).mount('.sample');
     </script>
   </body>

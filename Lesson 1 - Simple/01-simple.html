@@ -1,45 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Урок 1</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/styles.css" rel="stylesheet" />
     <script src="js/vue.js"></script>
-</head>
-<body>
-<div class="wrapper">
-    <div class="sample">
-        <input type="text" v-model="name">
-        <hr>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sample">
+        <input type="text" v-model="name" />
+        <hr />
         <h2>Hello, {{ name }}</h2>
+      </div>
     </div>
-</div>
 
-
-<script>
-
-    let app = Vue.createApp({ // (создаем корневой компонент - могут быть другие объекты) создаем application - кусок разметки, которое вью контролирует
+    <script>
+      let app = Vue.createApp({
+        // (создаем корневой компонент - могут быть другие объекты) создаем application - кусок разметки, которое вью контролирует
         // сюда передается такой же объект, как и в new Vue()
 
-        /*
-            data: ()=>({ // data - функция. которая возвращает объект () - скобки нужны для того, чтобы вернуть объект
-                name: ''
-            }),
-        */
+        data: () => ({
+          // data - функция. которая возвращает объект () - скобки нужны для того, чтобы вернуть объект
+          name: '',
+        }),
 
         // это тоже самое, что и:
-
+        /*    
         data: function () {
             return {
                 name: '' // поле созданного компонента
             }
         }
-    });
+        */
+      });
 
-    let root = app.mount('.sample'); // с помощью метода mount вписываем разметку в див sample
-    console.log(root)
-</script>
-</body>
+      let root = app.mount('.sample'); // с помощью метода mount вписываем разметку в див sample
+      console.log(root);
+    </script>
+  </body>
 </html>

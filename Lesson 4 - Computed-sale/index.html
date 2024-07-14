@@ -1,60 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Методы</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/styles.css" rel="stylesheet" />
     <script src="js/vue.js"></script>
-</head>
-<body>
-<div class="wrapper">
-    <div class="sample">
-        <input type="text" v-model.trim.lazy="promo">  <!--lazy - при потере фокуса-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sample">
+        <input type="text" v-model.trim.lazy="promo" />
+        <!--lazy - при потере фокуса-->
 
-        <!--        {{getSale('em')}}-->
-        <!--        {{getSale('some')}}-->
+        <!-- {{getSale('em')}}  // 0 -->
+        <!-- {{getSale('some')}} // 10 -->
         <div>Цена без скидки: {{price}}</div>
-            <div v-if="hasSale">
-                <div class="alert alert-danger">- {{ sale }}</div>
-            </div>
+        <div v-if="hasSale">
+          <div class="alert alert-danger">Ваша скидка: - {{ sale }}%</div>
+        </div>
         <div>Итоговая цена: {{total}}</div>
+      </div>
     </div>
-</div>
 
-
-<script>
-    let app = Vue.createApp({
-        data: function () {
-            return {
-                promo: '',
-                price: 1000
-
-            }
-        },
+    <script>
+      let app = Vue.createApp({
+        data: () => ({
+          promo: '',
+          price: 1000,
+        }),
         methods: {
-            getSale(promo) {
-                let codes = {
-                    some: 10,
-                    other: 20
-                }
-                return codes.hasOwnProperty(promo) ? codes[promo] : 0; // если промокод есть, то возьмем его
-            }
+          getSale(promo) {
+            let codes = {
+              some: 10,
+              other: 20,
+            };
+            return codes.hasOwnProperty(promo) ? codes[promo] : 0; // если промокод есть, то возьмем его
+          },
         },
         computed: {
-            sale() {
-                return this.getSale(this.promo)
-            },
-            hasSale() {
-                return this.sale > 0
-            },
-            total() {
-                return this.price * (1 - this.sale / 1000) // размер скидки
-            }
-        }
-    });
-    let root = app.mount('.sample');
-</script>
-</body>
+          sale() {
+            return this.getSale(this.promo);
+          },
+          hasSale() {
+            return this.sale > 0;
+          },
+          total() {
+            return this.price * (1 - this.sale / 1000); // размер скидки
+          },
+        },
+      });
+      let root = app.mount('.sample');
+    </script>
+  </body>
 </html>

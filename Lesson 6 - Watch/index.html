@@ -12,7 +12,7 @@
 <div class="wrapper">
     <div class="sample">
         <input type="text" v-model.trim.lazy="promo">
-        <button @click="this.promo = '' ">X</button>
+        <button @click="promo = '' ">X</button>
         <div>Цена без скидки: {{price}}</div>
         <div v-if="hasSale">
             <div class="alert alert-danger">- {{ sale }}</div>
@@ -32,7 +32,7 @@
 
             }
         },
-        watch: { // срабатывает тоггда, когда изменится значение promo - оно должно совпадать с promo верхним
+        watch: { // срабатывает тогда, когда изменится значение promo - оно должно совпадать с promo верхним
             promo() {
                 this.getSale(this.promo, (sale) => { // передаем промокод и обработчик
                     this.sale = sale
